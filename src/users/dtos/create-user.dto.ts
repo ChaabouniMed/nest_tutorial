@@ -1,8 +1,15 @@
+import { IsEmail, IsString, Length, length } from 'class-validator';
+
 export class CreateUserDto {
+  @IsString()
+//   @Length(3,20,{groups: ['create']})
+//   @Length(5,25,{groups: ['update']})
+@Length(3,20)
+  username: string; //required
 
-    username: String; //required
+  @IsEmail({},{message: "incorrect email"})
+  email: string; //required
 
-    email: String; //required
-
-    country? : String //not required
+  @IsString() //lezma bch yekhedhha b3in l e3tibar, maaneha lezem kbal kol atrribut naaml decorator khatr fl main keteb hedhi : app.useGlobalPipes(new ValidationPipe({whitelist: true})); 
+  country: string; //required
 }
